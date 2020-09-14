@@ -1,0 +1,35 @@
+{%  if ResultExEvclid %}
+<div class="Results">
+    <table class="ExEuclidResultTable" >
+        <tr>
+            <td>U</td>
+            <td>V</td>
+            <td>R</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {%  for result in ResultExEvclid %}
+
+            <tr>
+                <td>{{ result.u }} </td>
+                <td>{{ result.v }} </td>
+                <td>{{ result.r }} </td>
+                {% if result.q !=-1 %}
+                    <td>{{ result.q }} </td>
+                    <td>{{ result.qb }} </td>
+                {% else %}
+                    <td>q</td>
+                    <td>qb</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td>0</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+{% endif %}

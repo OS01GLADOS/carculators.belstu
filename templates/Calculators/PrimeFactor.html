@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Разложение на простые множители</title>
+</head>
+<body>
+    <form method="post">
+        <input type="text" name = "number" placeholder="Введите число">
+        <input type="submit" value="Вычислить">
+    </form>
+    {% if Answer  %}
+        <table>
+        <tr>
+            <td>Число</td>
+            <td>Множитель</td>
+        </tr>
+        {% for i in Answer %}
+            <tr>
+                <td>
+                    {{ i.n }}
+                </td>
+                <td>
+                    {{ i.Ans }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>1</td>
+        </tr>
+        </table>
+    {% endif %}
+</body>
+</html>

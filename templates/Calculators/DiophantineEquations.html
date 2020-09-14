@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Диофановы уравнения</title>
+</head>
+<body>
+ <form method="post">
+     <input type="text" name="numberA" placeholder="a" >*x +
+     <input type="text" name="numberB" placeholder="b" >*y =
+     <input type="text" name="numberC" placeholder="c" >
+
+     <input type="submit" value="Вычислить"><br>
+     рассчитать корни уравнения на интервале: [<input type="text" name="numberBegin" > ;  <input type="text" name="numberEnd" >]
+ </form>
+{% if DiophantineRes %}
+    <p>{{ DiophantineRes.a }}*x + {{ DiophantineRes.b }}*y = {{ DiophantineRes.c }}</p>
+    {# выводим таблицу #}
+    <p>По расширенному алгоритму Евклида найдём x0 и y0:</p>
+    {% include 'Calculators/ExEvclid/OutputTemplate.html' %}
+    <p>
+        x0 = {% if DiophantineRes.ifAneg ==-1 %}{{ DiophantineRes.ifAneg }}*{% endif %}{{ DiophantineRes.resEvclid[-1].u }} * {{ DiophantineRes.c }}/{{ DiophantineRes.resEvclid[-1].r }} = {{ DiophantineRes.x0 }},<br>
+        y0 = {% if DiophantineRes.ifBneg == -1 %}{{ DiophantineRes.ifBneg }}*{% endif %}{{ DiophantineRes.resEvclid[-1].v }} * {{ DiophantineRes.c }}/{{ DiophantineRes.resEvclid[-1].r }} = {{ DiophantineRes.y0 }}
+    </p>
+    <p>
+        d = {{ DiophantineRes.resEvclid[-1].r }}<br>
+        (a*x0)+(b*y0)=r <br>
+        ({{ DiophantineRes.a }}*{{ DiophantineRes.x0 }}) + ({{ DiophantineRes.b }}*{{ DiophantineRes.y0 }}) = {{ DiophantineRes.c }}
+    </p>
+    {%   if DiophantineRes.solved == False  %}
+            <p>
+                Уравнение решений не имеет, т.к. с ({{ DiophantineRes.c }}) не делится на d ({{ DiophantineRes.resEvclid[-1].r }})
+            </p>
+    {% else %}
+      <p>
+        //Получим корни:<br>
+        x = x0 + (b/d) =  {{ DiophantineRes.x0 }} + ({{ DiophantineRes.b/DiophantineRes.resEvclid[-1].r }})*t<br>
+        y = y0 - (a/d) = {{ DiophantineRes.y0 }} - ({{ DiophantineRes.a/DiophantineRes.resEvclid[-1].r }})*t<br>
+
+            //значения корней на интервале [{{ tBegin }};{{ tEnd }}]:{# todo А тут пиздец какой то #}
+      </p>
+            <table border="dashed">
+            <tr>
+                <td>t</td>
+                {% for i in range(0, 1+tEnd-tBegin) %}
+                <td>{{ tBegin+ i}}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>X</td>
+                {% for i in DiophantineRes.x %}
+                <td>{{ i }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Y</td>
+                {% for i in DiophantineRes.y %}
+                <td>{{ i }}</td>
+                {% endfor %}
+            </tr>
+            </table>
+
+    {% endif %}
+
+{% endif %}
+</body>
+</html>

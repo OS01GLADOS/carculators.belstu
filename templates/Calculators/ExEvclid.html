@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Расширенный Алгоритм Евклида</title>
+
+</head>
+<body>
+
+{% include 'Calculators/ExEvclid/InputTemplate.html' %}
+{% if ResultExEvclid %}
+<p>НОД: {{ ResultExEvclid[-1].r }}</p>
+<p>Соотношение Безу: {{ ResultExEvclid[-1].u }}*{{ ResultExEvclid[0].r }} + {{ ResultExEvclid[-1].v }}*{{ ResultExEvclid[1].r }} = {{ ResultExEvclid[-1].r }}</p>
+{% endif %}
+{% include 'Calculators/ExEvclid/OutputTemplate.html' %}
+
+</body>
+</html>
