@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>КАРкуляторс</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .list-group-item:hover{
+            background-color: dodgerblue!important;
+                        color: white !important;
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body>
-    <p>Дезигн не нужон)</p>
-    <a href="/calculators/PrimeFactorization">Разложение на множители</a><br>
-    <a href="/calculators/ExEvclid">Расширенный алгоритм евклида</a><br>
-    <a href="/calculators/DiophantineEquations">Диофановы уравнения</a>
+<div class="container">
+    <h1>Дезигн не нужон)</h1>
+    <ul class="list-group">
+        <a class="list-group-item" href="/calculators/PrimeFactorization">Разложение на множители</a>
+        <a  class="list-group-item" href="/calculators/ExEvclid">Расширенный алгоритм евклид</a>
+        <a  class="list-group-item" href="/calculators/DiophantineEquations">Диофановы уравнения</a>
+    </ul>
+</div>
+{#
+<div class="container">
+    <h5>Случайная игра</h5>
+
+#}
+
+{% include 'Calculators/games/catgame.html' %}
+</div>
 </body>
 </html>
